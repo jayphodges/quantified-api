@@ -1,0 +1,21 @@
+{
+  "name": "quantified-api",
+  "version": "1.0.0",
+  "description": "Quantified Self Backend",
+  "main": "server.js",
+  "scripts": {
+    "test": "NODE_ENV=test mocha test/*-test.js",
+    "start": "nodemon server.js",
+    "debug": "NODE_ENV=test mocha debug test/*-test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayphodges/quantified-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jayphodges/quantified-api/issues"
+  },
+  "homepage": "https://github.com/jayphodges/quantified-api#readme"
+}
