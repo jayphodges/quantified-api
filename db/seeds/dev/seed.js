@@ -1,6 +1,6 @@
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('foods').del()
+  return knex.raw('TRUNCATE foods RESTART IDENTITY CASCADE')
     .then(function () {
       return knex('foods').insert([
         {name: 'Banana', calories: 150},
@@ -16,18 +16,58 @@ exports.seed = function(knex, Promise) {
         {name: 'Fruit Snacks', calories: 120},
         {name: 'Apple', calories: 220}
       ]);
-    })
-  return knex('meals').del()
-    .then(function () {
-      return knex('foods').insert([
-        {name: 'Breakfast'}
-        {name: 'Lunch'}
-        {name: 'Dinner'}
-        {name: 'Snack'}
-      ]);
-    })
-    
-};
+    }).then(function() {
+      return knex.raw('TRUNCATE meals RESTART IDENTITY CASCADE')
+        .then(function () {
+          return knex('meals').insert([
+            {name: 'Breakfast'},
+            {name: 'Lunch'},
+            {name: 'Dinner'},
+            {name: 'Snack'}
+          ]);
+        })
+    }).then(function() {
+      return knex.raw('TRUNCATE foods_meals RESTART IDENTITY CASCADE')
+        .then(function () {
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [1, 1]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [2, 1]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [3, 1]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [4, 2]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [5, 2]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [6, 2]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [7, 3]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [8, 3]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [9, 3]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [10, 4]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [11, 4]
+          ),
+          knex.raw('INSERT INTO foods_meals (food_id, meal_id) VALUES (?, ?)',
+            [12, 4]
+          )
+        })
+      })
+}
 //
 // exports.seed = function(knex, Promise) {
 //   let foods = [ ["Banana", 150], ["Bagel Bites - Four Cheese", 650]]
