@@ -103,16 +103,16 @@ exports.seed = function(knex, Promise) {
 // const meals = [ "Breakfast", "Snack", "Lunch", "Dinner" ]
 //
 //
-const addFood = (foods) => {
-  console.log(this)
-    foods.forEach(function (value) {
-        let name = value[0]
-        let calories = value[1]
-        knex.raw(
-        'INSERT INTO foods (name, calories) VALUES (?, ?)',
-            [name, calories])
-    })
-}
+// const addFood = (foods) => {
+//   console.log(this)
+//     foods.forEach(function (value) {
+//         let name = value[0]
+//         let calories = value[1]
+//         knex.raw(
+//         'INSERT INTO foods (name, calories) VALUES (?, ?)',
+//             [name, calories])
+//     })
+// }
 //
 // addFood(foods);
 // FOODS.each do |food|
