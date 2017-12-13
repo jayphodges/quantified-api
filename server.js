@@ -7,18 +7,20 @@ const foodController = require('./lib/controllers/food')
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
+const foodController = require('./lib/controllers/food')
+const mealController = require('./lib/controllers/meal')
 
 app.set('port', process.env.PORT || 3000)
-app.locals.title = 'Secret Box'
+app.locals.title = 'Quantified Self'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 // Foods
-// app.get('/api/v1/foods', foodController.getFoods)
-// app.get('/api/v1/foods/:id', foodController.getFood)
-// app.post('/api/v1/foods', foodController.addFood)
-// app.patch('/api/v1/foods/:id', foodController.patchFood)
-// app.delete('/api/v1/foods/:id', foodControler.deleteFood)
+app.get('/api/v1/foods', foodController.getFoods)
+app.get('/api/v1/foods/:id', foodController.getFood)
+app.post('/api/v1/foods', foodController.addFood)
+app.patch('/api/v1/foods/:id', foodController.patchFood)
+app.delete('/api/v1/foods/:id', foodController.deleteFood)
 
 // Meals
 app.get('/api/v1/meals', mealController.getMeals)
