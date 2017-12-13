@@ -13,22 +13,15 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 // Foods
 app.get('/api/v1/foods', foodController.getFoods)
-
 app.get('/api/v1/foods/:id', foodController.getFood)
-
 app.post('/api/v1/foods', foodController.addFood)
-
 app.patch('/api/v1/foods/:id', foodController.patchFood)
-
 app.delete('/api/v1/foods/:id', foodControler.deleteFood)
 
 // Meals
 app.get('/api/v1/meals', mealController.getMeals)
-
 app.get('/api/v1/meals/:meal_id/foods', mealController.getMealFoods)
-
 app.post('/api/v1/meals/:meal_id/foods/:id', mealController.addMealFood)
-
 app.delete('/api/v1/foods/:id', mealController.deleteMealFood)
 
 if(!module.parent) {
