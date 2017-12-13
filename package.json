@@ -4,7 +4,7 @@
   "description": "Quantified Self Backend",
   "main": "server.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha test/*-test.js",
+    "test": "knex seed:run --env test; NODE_ENV=test mocha test/*-test.js --exit",
     "start": "nodemon server.js",
     "debug": "NODE_ENV=test mocha debug test/*-test.js"
   },
@@ -22,11 +22,13 @@
     "body-parser": "^1.18.2",
     "express": "^4.16.2",
     "knex": "^0.14.2",
-    "pg": "^7.4.0"
+    "pg": "^7.4.0",
+    "pryjs": "^1.0.3"
   },
   "devDependencies": {
     "chai": "^4.1.2",
     "mocha": "^4.0.1",
-    "nodemon": "^1.12.5"
+    "nodemon": "^1.12.5",
+    "request": "^2.83.0"
   }
 }
