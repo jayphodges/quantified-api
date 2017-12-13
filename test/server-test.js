@@ -5,6 +5,7 @@ const environment = process.env.NODE_ENV || 'test'
 const configuration = require('../knexfile')[environment]
 const database = require('knex')(configuration)
 const Food = require('../lib/models/food')
+const pry = require('pryjs')
 
 describe('Server', function(){
 
@@ -28,26 +29,55 @@ describe('Server', function(){
   })
 
   describe('/api/vi/foods', function(){
-    // beforeEach(function(done){
-    //   Food.create( {name: "banana", calories: "100"} )
-    //   .then(Food.create( {name: "orange", calories: "200"} ))
-    //   .then(function() { done() })
-    // })
-    //
-    // afterEach(function(done){
-    //   Food.destroyAll()
-    //   .then(function() { done() })
-    // })
-
     it('should return an array of all food objects', function(done){
       this.request.get('/api/v1/foods', function(error, response){
         if (error) {done(error)}
 
-        let parsedSecret = JSON.parse(response.body)
+        let parsedFoods = JSON.parse(response.body)
 
-        assert.equal(parsedSecret.length, 2)
+        assert.equal(parsedFoods.length, 12)
+        assert.equal(parsedFoods[0].name, "Banana")
         done()
       })
+    })
+  })
+
+  describe('/api/v1/foods/:id', function(){
+
+    it('should return 404 if resource is not found', function(done){
+      this.request.get('/api/v1/foods/100000', function(error, response){
+        if (error) { done(error) }
+        assert.equal(response.statusCode, 404)
+        done()
+      })
+    })
+
+    it('should return a single food with the id given', function(done){
+      this.request.get('/api/v1/foods/1', function(error, response){
+        if(error) {done(error)}
+
+        let parsedFood = JSON.parse(response.body)
+        assert.equal(response.statusCode, 200)
+        assert.equal(parsedFood.name, "Banana")
+        done()
+      })
+    })
+  })
+
+  describe('post /api/v1/foods', function(){
+
+    it('should return a 422 if missing a property', function(done){
+      let name = "Orange"
+      this.request.post('/api/v1/foods',{ name: name }, function(error, response){
+        if(error) {done(error)}
+        assert.equal(response.statusCode, 422)
+        done()
+      })
+    })
+
+    it('should return a 201 when succesfully posting', function(done){
+      let name = "Orange"
+      
     })
   })
 })
