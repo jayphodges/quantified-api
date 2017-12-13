@@ -28,16 +28,16 @@ describe('Server', function(){
   })
 
   describe('/api/vi/foods', function(){
-    beforeEach(function(done){
-      Food.create( {name: "banana", calories: "100"} )
-      .then(Food.create( {name: "orange", calories: "200"} ))
-      .then(function() { done() })
-    })
-
-    afterEach(function(done){
-      Food.destroyAll()
-      .then(function() { done() })
-    })
+    // beforeEach(function(done){
+    //   Food.create( {name: "banana", calories: "100"} )
+    //   .then(Food.create( {name: "orange", calories: "200"} ))
+    //   .then(function() { done() })
+    // })
+    //
+    // afterEach(function(done){
+    //   Food.destroyAll()
+    //   .then(function() { done() })
+    // })
 
     it('should return an array of all food objects', function(done){
       this.request.get('/api/v1/foods', function(error, response){
@@ -46,6 +46,7 @@ describe('Server', function(){
         let parsedSecret = JSON.parse(response.body)
 
         assert.equal(parsedSecret.length, 2)
+        done()
       })
     })
   })
