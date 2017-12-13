@@ -7,6 +7,7 @@ const database = require('knex')(configuration)
 const Food = require('../lib/models/food')
 
 describe('Server', function(){
+
   before(function(done){
     this.port = 9876
     this.server = app.listen(this.port, function(err, result){
@@ -28,8 +29,8 @@ describe('Server', function(){
 
   describe('/api/vi/foods', function(){
     beforeEach(function(done){
-      Food.create(name: "banana", calories: "100")
-      .then(Food.create(name: "orange", calories: "200"))
+      Food.create( {name: "banana", calories: "100"} )
+      .then(Food.create( {name: "orange", calories: "200"} ))
       .then(function() { done() })
     })
 
