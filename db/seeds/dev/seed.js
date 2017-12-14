@@ -74,7 +74,6 @@ exports.seed = function(knex, Promise) {
     })
 }
 
-setTimeout(function() {
   exports.seed = function(knex, Promise) {
     return knex.raw('TRUNCATE foods_meals RESTART IDENTITY;')
     .then(function() {
@@ -117,6 +116,4 @@ setTimeout(function() {
           )
         ])
       })
-      console.log(something)
   }
-}, 500)
