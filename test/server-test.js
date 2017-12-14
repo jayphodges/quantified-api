@@ -75,7 +75,7 @@ describe('Server', function(){
       })
     })
 
-    it('should return a 201 when succesfully posting', function(done){
+    it('should return a 200 when succesfully posting', function(done){
       let name = "Orange"
       let calories = "100"
       this.request.post('/api/v1/foods',{ form: {name: name, calories: calories} }, function(error, response){
