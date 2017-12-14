@@ -7,8 +7,7 @@ const foodController = require('./lib/controllers/food')
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
-const foodController = require('./lib/controllers/food')
-const mealController = require('./lib/controllers/meal')
+
 
 app.set('port', process.env.PORT || 3000)
 app.locals.title = 'Quantified Self'
