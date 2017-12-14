@@ -7,12 +7,20 @@ const foodController = require('./lib/controllers/food')
 const environment = process.env.NODE_ENV || 'development';
 const configuration = require('./knexfile')[environment];
 const database = require('knex')(configuration);
+
 const cors = require('cors')
+
+const path = require('path')
 
 app.set('port', process.env.PORT || 3000)
 app.locals.title = 'Quantified Self'
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', function(request, response){
+  response.sendFile(path.join(__dirname + '/index.html'))
+})
 
 const corsOptions = {
   origin: '*',
