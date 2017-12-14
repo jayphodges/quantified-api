@@ -29,7 +29,7 @@ describe('Server', function(){
   })
 
   describe('/api/vi/foods', function(){
-    it('should return an array of all food objects', function(done){
+    xit('should return an array of all food objects', function(done){
       this.request.get('/api/v1/foods', function(error, response){
         if (error) {done(error)}
 
@@ -44,7 +44,7 @@ describe('Server', function(){
 
   describe('/api/v1/foods/:id', function(){
 
-    it('should return 404 if resource is not found', function(done){
+    xit('should return 404 if resource is not found', function(done){
       this.request.get('/api/v1/foods/100000', function(error, response){
         if (error) { done(error) }
         assert.equal(response.statusCode, 404)
@@ -52,7 +52,7 @@ describe('Server', function(){
       })
     })
 
-    it('should return a single food with the id given', function(done){
+    xit('should return a single food with the id given', function(done){
       this.request.get('/api/v1/foods/1', function(error, response){
         if(error) {done(error)}
 
@@ -77,7 +77,12 @@ describe('Server', function(){
 
     it('should return a 201 when succesfully posting', function(done){
       let name = "Orange"
-      
+      let calories = "100"
+      this.request.post('/api/v1/foods',{ form: {name: name, calories: calories} }, function(error, response){
+        if(error) {done(error)}
+        assert.equal(response.statusCode, 200)
+        done()
+      })
     })
   })
 })
